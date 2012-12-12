@@ -1,0 +1,8 @@
+
+== 0.0.2
+
+* change to rails engine
+
+== 0.0.1
+
+* init as normal gem
