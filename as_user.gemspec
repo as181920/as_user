@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.version     = AsUser::VERSION
   s.authors     = ["Andersen Fan"]
   s.email       = ["as181920@hotmail.com"]
-  s.homepage    = "TODO"
+  s.homepage    = "https://github.com/as181920/as_user"
   s.summary     = "basic user handling and authentication solution for rails"
   s.description = "the most basic features"
 

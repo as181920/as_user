@@ -50,9 +50,6 @@ module AsUser
       assert !user.save
       user = User.new(email: "dummy#{Time.now.to_f}@domain.com", name: "dummy", password: "dummy",password_confirmation: "dummz")
       assert !user.save
-
-      #TODO debug error of test itself
-      assert false
     end
 
   end
