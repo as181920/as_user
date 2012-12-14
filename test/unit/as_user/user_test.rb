@@ -52,6 +52,23 @@ module AsUser
       assert !user.save
     end
 
+    test "authenticate user" do
+      create_dummy_user
+      email = "dummy@domain.com"
+      user = User.find_by_email email
+      assert user.respond_to?(:authenticate)
+
+      # invalid pasword for authentication
+      assert user.authenticate "dummy"
+      assert ! user.authenticate("dummz")
+    end
+
+    private
+    def create_dummy_user
+      email = "dummy@domain.com"
+      user = User.create!(email: email, name: "dummy", password: "dummy",password_confirmation: "dummy")
+    end
+
   end
 end
 
