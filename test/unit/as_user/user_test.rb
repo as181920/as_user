@@ -63,6 +63,12 @@ module AsUser
       assert ! user.authenticate("dummz")
     end
 
+    test "delete one user" do
+      user = create_dummy_user
+      assert user.destroy
+      assert_equal 0,User.all.count
+    end
+
     private
     def create_dummy_user
       email = "dummy@domain.com"
