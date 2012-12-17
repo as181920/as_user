@@ -2,17 +2,21 @@ require 'test_helper'
 
 module AsUser
   class UsersControllerTest < ActionController::TestCase
-=begin
     setup do
-      @user = users(:one)
+      #@user = users(:one)
+      #@routes = AsUser::Engine.routes 
+    end
+
+    teardown do
     end
   
     test "should get index" do
       get :index
       assert_response :success
-      assert_not_nil assigns(:users)
+      #assert_not_nil assigns(:users)
     end
   
+=begin
     test "should get new" do
       get :new
       assert_response :success
