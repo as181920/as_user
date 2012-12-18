@@ -46,6 +46,7 @@ module AsUser
         post :create, user: { email: user.email, name: user.name, password: user.password, password_confirmation: user.password_confirmation }
       end
   
+      assert_equal "User was successfully created.", flash[:notice]
       assert_redirected_to user_path(assigns(:user))
     end
 
