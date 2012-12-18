@@ -32,6 +32,12 @@ module AsUser
     test "should get new" do
       get :new
       assert_response :success
+      assert_select "form"
+      assert_select "#user_email"
+      assert_select "[name=?]","utf8"
+      assert_select "[name=?]", "user[email]"
+      assert_select "[name=?]", "user[password]"
+      assert_select "[name=?]", "user[password_confirmation]"
     end
   
     test "should create user" do
@@ -41,6 +47,13 @@ module AsUser
       end
   
       assert_redirected_to user_path(assigns(:user))
+    end
+
+    test "create invalid user with error message" do
+      assert_no_difference('User.count') do
+        post :create, user: { email: "a", name: "dummy", password: "dummy", password_confirmation: "dummy" }
+      end
+      assert_equal "create user failed.", flash[:error]
     end
   
     #TODO update user
