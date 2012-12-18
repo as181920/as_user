@@ -12,7 +12,8 @@ module AsUser
 
     def sign_out
       #cookies.delete(:remember_token)
-      self.current_uesr = nil
+      session[:user_id] = nil
+      self.current_user = nil
     end
 
     def current_user=(user)
@@ -22,6 +23,10 @@ module AsUser
     def current_user
       #@current_user ||= User.find_by_remember_token(cookies[:remember_token])
       @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+    end
+
+    def current_user?(user)
+      user == current_user
     end
   end
 end

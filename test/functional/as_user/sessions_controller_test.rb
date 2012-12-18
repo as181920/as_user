@@ -18,7 +18,24 @@ module AsUser
       assert_select "[name=?]","session[email]"
       assert_select "[name=?]","session[password]"
     end
+
+    test "sign in then sign out" do
+      user = FactoryGirl.create(:user)
+      post :create, session: {email: user.email, password: user.password}
+      assert_redirected_to user
+
+      delete :destroy
+      assert_nil session[:user_id]
+      assert_redirected_to root_path
+      assert_equal "signed out.", flash[:notice]
+    end
+
+    test "sign in with invalid user" do
+      post :create, session: {email: "a", password: "xxx"}
+      assert_template :new
+      assert_equal "Invalid email/password combination", flash[:error]
+    end
+
   end
 end
-
 
