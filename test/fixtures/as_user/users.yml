@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  email: dummy1@domain.com
+  email: dummy1@example.com
   name: dumma
   password_digest: xxxxxxxxxxxxxxxxxxxxxxxx
 
 two:
-  email: dummy2@domain.com
+  email: dummy2@example.com
   name:dummb
   password_digest: xxxxxxxxxxxxxxxxxxxxxxxx

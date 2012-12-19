@@ -1,8 +1,12 @@
 # encoding: utf-8
 FactoryGirl.define do
   factory :user do
-    email 'dummy1@domain.com'
-    name 'dummy'
+    sequence :email do |n|
+      "email#{n}@example.com"
+    end
+    sequence :name do |n|
+      "name#{n}"
+    end
     password "password"
     password_confirmation "password"
   end

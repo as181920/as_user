@@ -11,23 +11,23 @@ module AsUser
     end
 
     test "only save valid user" do
-      email = "dummy#{Time.now.to_f}@domain.com"
+      email = "dummy#{Time.now.to_f}@example.com"
       user = User.new(email: email, name: "dummy", password: "dummy",password_confirmation: "dummy")
       assert user.save
 
       # without name
-      user = User.new(email: "dummy#{Time.now.to_f}@domain.com", password: "dummy",password_confirmation: "dummy")
+      user = User.new(email: "dummy#{Time.now.to_f}@example.com", password: "dummy",password_confirmation: "dummy")
       assert !user.save
 
       # name too long
-      user = User.new(email: "dummy#{Time.now.to_f}@domain.com", name: "abcdefghigabcdefghigabcdefghigabcdefghigabcdefghig", password: "dummy",password_confirmation: "dummy")
+      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "abcdefghigabcdefghigabcdefghigabcdefghigabcdefghig", password: "dummy",password_confirmation: "dummy")
       assert !user.save
-      user = User.new(email: "dummy#{Time.now.to_f}@domain.com", name: "abcdefghigabcdefghigabcdefghigabcdefghigabcdefghi", password: "dummy",password_confirmation: "dummy")
+      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "abcdefghigabcdefghigabcdefghigabcdefghigabcdefghi", password: "dummy",password_confirmation: "dummy")
       assert user.save
 
-      user = User.new(email: "dummy#{Time.now.to_f}@domain.com", name: "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十", password: "dummy",password_confirmation: "dummy")
+      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十", password: "dummy",password_confirmation: "dummy")
       assert !user.save
-      user = User.new(email: "dummy#{Time.now.to_f}@domain.com", name: "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九", password: "dummy",password_confirmation: "dummy")
+      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九", password: "dummy",password_confirmation: "dummy")
       assert user.save
 
       # email invalid
@@ -42,19 +42,19 @@ module AsUser
       assert user.errors.messages[:email].include? "has already been taken"
 
     # invalid password
-      user = User.new(email: "dummy#{Time.now.to_f}@domain.com", name: "dummy", password: "du",password_confirmation: "dummy")
+      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "dummy", password: "du",password_confirmation: "dummy")
       assert !user.save
-      user = User.new(email: "dummy#{Time.now.to_f}@domain.com", name: "dummy", password_confirmation: "dummy")
+      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "dummy", password_confirmation: "dummy")
       assert !user.save
-      user = User.new(email: "dummy#{Time.now.to_f}@domain.com", name: "dummy", password: "dummy")
+      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "dummy", password: "dummy")
       assert !user.save
-      user = User.new(email: "dummy#{Time.now.to_f}@domain.com", name: "dummy", password: "dummy",password_confirmation: "dummz")
+      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "dummy", password: "dummy",password_confirmation: "dummz")
       assert !user.save
     end
 
     test "authenticate user" do
       create_dummy_user
-      email = "dummy@domain.com"
+      email = "dummy@example.com"
       user = User.find_by_email email
       assert user.respond_to?(:authenticate)
 
@@ -71,7 +71,7 @@ module AsUser
 
     private
     def create_dummy_user
-      email = "dummy@domain.com"
+      email = "dummy@example.com"
       user = User.create!(email: email, name: "dummy", password: "dummy",password_confirmation: "dummy")
     end
 
