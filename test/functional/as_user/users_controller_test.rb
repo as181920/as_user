@@ -87,7 +87,6 @@ module AsUser
       assert_redirected_to root_path
       sign_in @user
       put :update, {id: @user, user: { email: "email#{Time.now.to_f}@example.com", name: "name" }}
-      debugger
       assert_redirected_to @user
       assert_equal 'User was successfully updated.', flash[:notice]
       
