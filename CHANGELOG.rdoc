@@ -1,3 +1,9 @@
+== 0.0.3
+* basic user signup,signin,signout,update feature
+* no remember me
+* no mail confirmation
+* no token authentication
+* nothing else
 
 == 0.0.2
 
