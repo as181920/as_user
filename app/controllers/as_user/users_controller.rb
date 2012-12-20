@@ -92,11 +92,15 @@ module AsUser
     private
     def signed_in_as_self
       @user = User.find(params[:id])
-      unless current_user?(@user)
-        flash[:error] = "can only modify your own account."
-        redirect_to root_path
+      if current_user
+        unless current_user?(@user)
+          flash[:error] = "can only modify your own account."
+          redirect_to root_path
+        end
+      else
+        store_location
+        redirect_to signin_path
       end
     end
-
   end
 end

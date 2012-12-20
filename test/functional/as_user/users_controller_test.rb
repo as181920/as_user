@@ -25,7 +25,7 @@ module AsUser
     test "should get edit" do
       @user = FactoryGirl.create(:user)
       get :edit, id: @user
-      assert_redirected_to root_path
+      assert_redirected_to signin_path
       sign_in @user
       get :edit, id: @user
       assert_response :success
@@ -40,7 +40,7 @@ module AsUser
     test "should get edit password" do
       @user = FactoryGirl.create(:user)
       get :edit_password, id: @user
-      assert_redirected_to root_path
+      assert_redirected_to signin_path
       sign_in @user
       get :edit_password, id: @user
       assert_response :success
@@ -84,8 +84,7 @@ module AsUser
       # update user info
       @user = FactoryGirl.create(:user)
       put :update, {id: @user, user: { email: "email#{Time.now.to_f}@example.com", name: "name" }}
-      assert_redirected_to root_path
-      assert_equal "can only modify your own account.", flash[:error]
+      assert_redirected_to signin_path
       sign_in @user
       put :update, {id: @user, user: { email: "email#{Time.now.to_f}@example.com", name: "name" }}
       assert_redirected_to @user
