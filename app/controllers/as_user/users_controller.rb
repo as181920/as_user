@@ -70,7 +70,8 @@ module AsUser
           format.html { redirect_to @user, notice: 'User was successfully updated.' }
           format.json { head :no_content }
         else
-          format.html { render action: "edit" }
+          flash[:error] = "update password failed."
+          format.html { redirect_to @user }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end

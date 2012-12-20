@@ -85,17 +85,27 @@ module AsUser
       @user = FactoryGirl.create(:user)
       put :update, {id: @user, user: { email: "email#{Time.now.to_f}@example.com", name: "name" }}
       assert_redirected_to root_path
+      assert_equal "can only modify your own account.", flash[:error]
       sign_in @user
       put :update, {id: @user, user: { email: "email#{Time.now.to_f}@example.com", name: "name" }}
       assert_redirected_to @user
       assert_equal 'User was successfully updated.', flash[:notice]
       
-      #assert_response :success
-
       #update user password
-      #put :update, id: @user, user: { password: "pwd123", password_confirmation: "pwd123" }
-      #assert @user.authenticate("pwd123"), "can not authenticate with new password."
-      #assert_response :success
+      put :update, id: @user, user: { password: "", password_confirmation: "" }
+      assert_equal "update password failed.", flash[:error]
+      assert_redirected_to @user
+      put :update, id: @user, user: { password: "pwd", password_confirmation: "pwd" }
+      assert_equal "update password failed.", flash[:error]
+      assert_redirected_to @user
+      put :update, id: @user, user: { password: "pwd123", password_confirmation: "pwd124" }
+      assert_equal "update password failed.", flash[:error]
+      assert_redirected_to @user
+      put :update, id: @user, user: { password: "pwd123", password_confirmation: "pwd123" }
+      @user.reload
+      assert @user.authenticate("pwd123"), "should authenticate with new password."
+      assert_redirected_to @user
+      assert_equal 'User was successfully updated.', flash[:notice]
     end
   
     test "should destroy user" do

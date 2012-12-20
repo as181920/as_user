@@ -1,4 +1,16 @@
 # encoding: utf-8
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  email           :string(255)      not null
+#  name            :string(100)
+#  password_digest :string(60)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 require 'test_helper'
 
 module AsUser
