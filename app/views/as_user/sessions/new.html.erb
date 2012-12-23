@@ -1,16 +1,31 @@
 <h1>Sign in</h1>
 
-<div class="login_form">
-	<%= form_for(:session, url: sessions_path) do |f| %>
-		<%= f.label :email %>
-		<%= f.text_field :email %>
+<div class="form-box">
+  <%= form_for(:session, url: sessions_path) do |f| %>
+    <table class="form-table">
+      <tr>
+        <td> <%=space_filter(30)%><%= f.label :email %>: </td>
+        <td> <%= f.text_field :email %> </td>
+      </tr>
+      <tr>
+        <td> <%= f.label :password %>: </td>
+        <td> <%= f.password_field :password %> </td>
+      </tr>
+      <tr>
+        <td colspan="2"> <%= f.submit "Sign in" %> </td>
+      </tr>
 
-		<%= f.label :password %>
-		<%= f.password_field :password %>
-
-		<%= f.submit "Sign in" %>
-	<%end%>
+    </table>
+  <%end%>
 </div>
 
-<br/>
-<%= link_to 'Signup', signup_path %>
+<div class="nav_bar">
+  <div class="or_hr">Or</div>
+  <hr/>
+  <p>
+  <%= home_link %>
+  <%= link_to 'Signup', signup_path %>
+  </p>
+</div>
+
+

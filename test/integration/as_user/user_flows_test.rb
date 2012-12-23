@@ -45,8 +45,6 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
 
     get "/as_user/users/#{user_id}/edit_password"
     assert_select "form"
-    assert_select "[name=?]", "user[email]",false
-    assert_select "[name=?]", "user[name]",false
     assert_select "[name=?]", "user[password]"
     assert_select "[name=?]", "user[password_confirmation]"
     assert_select "a[href=?]","/as_user/users/#{user_id}", {count: 1, text: "Cancel"}
@@ -105,6 +103,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     get_via_redirect "/as_user/users/#{user2_id}"
     assert_equal "/as_user/users/#{user2_id}", path
     assert_select "a[href=?]","/as_user/users/#{user2_id}/edit", {count: 1, text: "Edit"}
+    assert_select "a[href=?]","/as_user/users/#{user2_id}/edit_password", {count: 1, text: "Change Password"}
     assert_select "a[href=?][data-method=?]","/as_user/signout", "delete", {count: 1, text: "Signout"}
   end
 
