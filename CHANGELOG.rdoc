@@ -1,3 +1,7 @@
+== 0.0.4
+* move all flash messages to shared/messages
+* optimize views (html/css)
+
 == 0.0.3
 * basic user signup,signin,signout,update feature
 * no remember me

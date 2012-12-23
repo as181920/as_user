@@ -13,6 +13,9 @@ module AsUser
       get :index
       assert_response :success
       assert_not_nil assigns(:users)
+      # test links
+      assert_select "a[href=?]",'/as_user/signin', 1
+      assert_select "a[href=?]",'/as_user/signup', 1
     end
   
     test "should show user" do
@@ -35,6 +38,8 @@ module AsUser
       assert_select "[name=?]", "user[name]"
       assert_select "[name=?]", "user[password]",false
       assert_select "[name=?]", "user[password_confirmation]",false
+      # test links
+      assert_select "a[href=?]","/as_user/users/#{@user.id}", {count: 1, text: "Cancel"}
     end
   
     test "should get edit password" do
@@ -50,6 +55,8 @@ module AsUser
       assert_select "[name=?]", "user[name]",false
       assert_select "[name=?]", "user[password]"
       assert_select "[name=?]", "user[password_confirmation]"
+      # test links
+      assert_select "a[href=?]","/as_user/users/#{@user.id}", {count: 1, text: "Cancel"}
     end
   
     test "should get new" do
@@ -61,6 +68,8 @@ module AsUser
       assert_select "[name=?]", "user[email]"
       assert_select "[name=?]", "user[password]"
       assert_select "[name=?]", "user[password_confirmation]"
+      # test links
+      assert_select "a[href=?]","/as_user/signin", {count: 1, text: "Signin"}
     end
   
     test "should create user" do
