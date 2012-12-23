@@ -1,9 +1,5 @@
 <h1>Sign in</h1>
 
-<div class="message_box">
-	<%= flash[:error] if flash[:error] %>
-</div>
-
 <div class="login_form">
 	<%= form_for(:session, url: sessions_path) do |f| %>
 		<%= f.label :email %>
