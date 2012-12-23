@@ -1,6 +1,7 @@
 == 0.0.4
 * move all flash messages to shared/messages
 * optimize views (html/css)
+* add test to cover page links
 
 == 0.0.3
 * basic user signup,signin,signout,update feature

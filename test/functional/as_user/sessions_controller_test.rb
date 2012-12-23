@@ -17,8 +17,6 @@ module AsUser
       assert_select "[name=?]","user[email]",false
       assert_select "[name=?]","session[email]"
       assert_select "[name=?]","session[password]"
-      # test links
-      assert_select "a[href=?]",'/as_user/signup', 1
     end
 
     test "sign in then sign out" do
