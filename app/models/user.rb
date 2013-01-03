@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
   validates :password, :password_confirmation, presence: true, length: {minimum: 3}, if: Proc.new { |user|
     user.new_record? or user.password
   }
+
+  def to_s
+    self.name || self.email.split("@").first
+  end
 end
