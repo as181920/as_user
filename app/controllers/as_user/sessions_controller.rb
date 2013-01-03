@@ -22,7 +22,8 @@ module AsUser
     def destroy
       store_location
       sign_out
-      redirect_back_or "/", notice: "signed out."
+      flash[:notice] = "signed out."
+      redirect_back_or "/"
     end
   
   end
