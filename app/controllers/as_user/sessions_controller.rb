@@ -23,7 +23,7 @@ module AsUser
       store_location
       sign_out
       flash[:notice] = "signed out."
-      redirect_back_or "/"
+      redirect_back_or root_path
     end
   
   end
