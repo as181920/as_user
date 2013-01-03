@@ -20,8 +20,9 @@ module AsUser
     end
 
     def destroy
+      store_location
       sign_out
-      redirect_to root_path, notice: "signed out."
+      redirect_back_or "/", notice: "signed out."
     end
   
   end
