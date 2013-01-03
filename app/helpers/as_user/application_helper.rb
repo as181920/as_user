@@ -4,7 +4,10 @@ module AsUser
       raw "&nbsp;"*n
     end
     
-    def home_link
+    def link_main_app
+      link_to 'Main_Home', main_app.root_path
+    end
+    def link_home
       link_to 'Home', root_path
     end
   end
