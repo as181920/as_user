@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>AsUser</title>
-  <%= stylesheet_link_tag    "as_user/application", :media => "all" %>
-  <%= javascript_include_tag "as_user/application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+		<title>AsUser</title>
+		<%= favicon_link_tag "/assets/favicon.ico"%>
+		<%= stylesheet_link_tag    "as_user/application", :media => "all" %>
+		<%= javascript_include_tag "as_user/application" %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body>
 
-  <%= render "as_user/shared/messages"%>
+		<%= render "as_user/shared/messages"%>
 
-  <%= yield %>
+		<%= yield %>
 
-  <hr/>
+		<hr/>
 
-  <div class="nav_bar">
-    <%= yield :menu%>
-  </div>
+		<div class="nav_bar">
+			<%= yield :menu%>
+		</div>
 
-</body>
+	</body>
 </html>
