@@ -2,7 +2,7 @@
 	<% if current_user %>
 		<strong class="hd">
 			<!--<img class="user" src="/assets/sample/no-avatar.jpg" width="20" height="20" alt=""/>-->
-			<%= current_user%>
+			<%=link_to current_user, current_user%>
 		</strong>
 		<div class="user-menubox">
 			<ul class="us-mn-list">
@@ -13,6 +13,8 @@
 			</ul>
 		</div>
 	<%else%>
+		<!--
 		<strong class="hd"><%=link_to "Singin", signin_path%><span class="line">|</span><%=link_to "Singup", signup_path%></strong>
+		-->
 	<%end%>
 </div>

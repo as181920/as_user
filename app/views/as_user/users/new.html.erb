@@ -1,13 +1,6 @@
-<h1>Sign up</h1>
+<% content_for :nav do %>
+  <%= link_to 'Signin', signin_path %>
+<% end %>
 
 <%= render 'form' %>
 
-<div class="nav_bar">
-  <div class="or_hr">Or</div>
-  <hr/>
-  <p>
-  <%= link_main_app %>
-  <%= link_home %>
-  <%= link_to 'Signin', signin_path %>
-  </p>
-</div>

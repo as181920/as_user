@@ -1,30 +1,14 @@
-<h1>Editing user</h1>
+<%= content_for :nav do %>
+  <%= link_to 'Cancel', @user %>
+<% end %>
 
 <div class="form-box">
   <%= form_for(@user) do |f| %>
     <table class="form-table">
-      <tr>
-        <td> <%=space_filter(30)%><%= f.label :email %>: </td>
-        <td> <%= f.text_field :email %> </td>
-      </tr>
-      <tr>
-        <td> <%= f.label :name %>: </td>
-        <td> <%= f.text_field :name %> </td>
-      </tr>
-      <tr>
-        <td colspan="2"> <%= f.submit "Update" %> </td>
-      </tr>
+      <tr> <td> <%= f.label :email %>: </td> <td> <%= f.text_field :email %> </td> </tr>
+      <tr> <td> <%= f.label :name %>: </td> <td> <%= f.text_field :name %> </td> </tr>
+      <tr> <td colspan="2"> <%= f.submit %> </td> </tr>
     </table>
   <% end %>
-</div>
-
-
-<div class="nav_bar">
-  <div class="or_hr">Or</div>
-  <hr/>
-  <p>
-  <%= link_home %>
-  <%= link_to 'Cancel', @user %>
-  </p>
 </div>
 

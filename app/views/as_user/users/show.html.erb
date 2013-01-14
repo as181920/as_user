@@ -1,25 +1,12 @@
-<h1>User Info</h1>
-
-<div class="form-box">
-<table class="form-table">
-  <tr>
-    <td> <%=space_filter(45)%>Id: </td>
-    <td> <%=text_field_tag "user[id]", @user.id, {readonly: "true"} %> </td>
-  </tr>
-  <tr>
-    <td> Name: </td>
-    <td> <%=text_field_tag "user[name]", @user.name, {readonly: "true"} %> </td>
-  </tr>
-</table>
-</div>
-
-
 <% content_for :nav do %>
-  <p>
-  <%= link_home %>
   <%= link_to 'Edit', edit_user_path(@user) if current_user?(@user) %>
+  <%= span_vertical_line %>
   <%= link_to 'Change Password', edit_password_user_path(@user) if current_user?(@user) %>
+  <%= span_vertical_line %>
   <%= link_to 'Signout', signout_path,method: :delete if current_user?(@user) %>
-  <%= link_to 'Signup', signup_path %>
-  </p>
 <% end %>
+
+<table class="form-table">
+  <tr> <td> Id: </td> <td> <%=text_field_tag "user[id]", @user.id, {readonly: "true"} %> </td> </tr>
+  <tr> <td> Name: </td> <td> <%=text_field_tag "user[name]", @user.name, {readonly: "true"} %> </td> </tr>
+</table>

@@ -5,7 +5,7 @@ module AsUser
     # GET /users
     # GET /users.json
     def index
-  
+      flash[:notice] = "Welcome"
     end
   end
 end

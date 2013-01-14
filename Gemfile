@@ -18,3 +18,5 @@ gem 'debugger'
 
 gem "pg"
 gem "annotate"
+gem "rack-mini-profiler"
+gem "kaminari"

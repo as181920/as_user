@@ -4,8 +4,8 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
 
   test "home page" do
     get "/as_user"
-    assert_select "a[href=?]",'/as_user/signin', 1
-    assert_select "a[href=?]",'/as_user/signup', 1
+    assert_select "a[href=?]",'/as_user/signin'
+    assert_select "a[href=?]",'/as_user/signup'
   end
 
   test "signup and edit" do
@@ -58,7 +58,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_select "[name=?]", "user[email]", 0
     assert_select "[name=?]", "session[password]"
     assert_select "[name=?]", "session[password_confirmation]", 0
-    assert_select "a[href=?]",'/as_user/signup', 1
+    assert_select "a[href=?]",'/as_user/signup'
 
     ## goto some page first
     origin_path = "/as_user/users/#{@user.id}/edit"
@@ -95,13 +95,11 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     get_via_redirect "/as_user/users/#{user1_id}"
     assert_equal "/as_user/users/#{user1_id}", path
     assert_select "a[href=?]","/as_user/users/#{user1_id}/edit", 0
-    assert_select "a[href=?][data-method=?]","/as_user/signout", "delete", 0
 
     get_via_redirect "/as_user/users/#{user2_id}"
     assert_equal "/as_user/users/#{user2_id}", path
     assert_select "a[href=?]","/as_user/users/#{user2_id}/edit", {count: 1, text: "Edit"}
     assert_select "a[href=?]","/as_user/users/#{user2_id}/edit_password", {count: 1, text: "Change Password"}
-    assert_select "a[href=?][data-method=?]","/as_user/signout", "delete", {count: 1, text: "Signout"}
   end
 
 end

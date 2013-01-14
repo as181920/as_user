@@ -1,3 +1,6 @@
 <% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class: "flash_#{name}" %>
+  <%= content_tag :div, class: "flash_#{name}" do %>
+    <strong><%=msg%></strong>
+    <a href="#nogo" class="close">X</a>
+  <% end %>
 <% end %>

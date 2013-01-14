@@ -1,4 +1,8 @@
-<h1>users</h1>
+<%= content_for :nav do %>
+  <%= link_to 'Signin', signin_path %>
+  <span class="line">|</span>
+  <%= link_to 'Signup', signup_path %>
+<% end %>
 
 <table>
   <tr>
@@ -16,7 +20,4 @@
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'Signin', signin_path %>
-<%= link_to 'Signup', signup_path %>
+<%=paginate @users%>

@@ -59,8 +59,8 @@ abbr, article, aside, bb, datagrid, datalist, details, dialog, eventsource, figu
 .us-mn-list li a:hover{text-decoration:none;background-color:#f1f1f1;}
 
 .message-box{margin:0 3%;padding-top:10px;color:#fff;clear:both;}
-.mes-tips-error{padding:8px 10px;border-radius:5px;background-color:#eb7767;}
-.mes-tips-success{padding:8px 10px;border-radius:5px;background-color:#7cb149;}
+.flash_error{padding:8px 10px;border-radius:5px;background-color:#eb7767;}
+.flash_notice{padding:8px 10px;border-radius:5px;background-color:#7cb149;}
 .message-box strong{font-size:1.2em;}
 .message-box .close{float:right;color:#fff;padding:2px 5px;}
 .message-box .close:hover{text-decoration:none;background-color:#8b291c;}

@@ -7,7 +7,7 @@ module AsUser
     # GET /users
     # GET /users.json
     def index
-      @users = User.all
+      @users = User.order("created_at desc").page([params[:page].to_i, 1].max).per(100)
   
       respond_to do |format|
         format.html # index.html.erb
