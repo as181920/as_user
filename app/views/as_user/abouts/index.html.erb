@@ -1,11 +1,11 @@
-
-<div class="nav_button">
-  <%= link_to 'Signin', signin_path %>
-	<%= space_filter(7) %>
-  <%= link_to 'Signup', signup_path %>
+<div class="huge_nav_button">
+	<% if current_user %>
+		<%= link_to 'Detail', current_user %>
+		<%= space_filter(7) %>
+		<%= link_to 'Signout', signout_path, {method: :delete} %>
+	<%else%>
+		<%= link_to 'Signin', signin_path %>
+		<%= space_filter(7) %>
+		<%= link_to 'Signup', signup_path %>
+	<%end%>
 </div>
-
-<div class="intro_content">
-	Powered by <%=link_to "as_user", "http://github.com/as181920/as_user", {target: "_blank"}%>
-</div>
-

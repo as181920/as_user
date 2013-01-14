@@ -31,6 +31,6 @@ class User < ActiveRecord::Base
   }
 
   def to_s
-    self.name || self.email.split("@").first
+    self.nickname || self.name || "_guest"
   end
 end

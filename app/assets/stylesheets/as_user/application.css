@@ -12,20 +12,3 @@
  *= require_tree .
  */
 
-body { text-align:center; background-image: url("/assets/bg.jpg"); }
-
-
-.nav_button a{position:relative;top:138px;border:#D5DBD3 6px solid;font-size:36px;text-decoration:none;border-radius:7px;background-color: #D5DBD3; }
-
-.intro_content {position:relative;top:238px;font-size:12px;text-decoration:none;border-radius:2px;}
-.intro_content a{text-decoration:none;border:#ddd 2px solid;font-size:10px;font-weight:normal;font-style:italic;border-radius:6px;}
-
-.form-box { margin-right:auto;margin-left:auto;width:50%;text-align: right; }
-.form-table td{ padding-bottom: 8px;}
-input[type='submit'] {}
-
-.or_hr {text-align: left;}
-.nav_bar {text-align: left;position:relative;top:25px;}
-.nav_bar a{text-decoration:none;border:#D5DBD3 3px solid;font-size:14px;border-radius:7px;background-color: #D5DBD3;}
-
-

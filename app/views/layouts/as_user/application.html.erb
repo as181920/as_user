@@ -9,15 +9,26 @@
 	</head>
 	<body>
 
-		<%= render "as_user/shared/messages"%>
+		<header id="header">
+			<%= render "as_user/shared/logo_nav"%>
+			<nav class="main-nav">
+				<%= yield :nav%>
+			</nav>
+			<%= render "as_user/shared/user_info"%>
+		</header>
 
-		<%= yield %>
+		<div id="container">
+			<div class="message-box">
+				<%= render "as_user/shared/messages"%>
+			</div>
 
-		<hr/>
-
-		<div class="nav_bar">
-			<%= yield :menu%>
+			<%= yield %>
 		</div>
 
+		<footer id="footer">
+			Powered by <%=link_to "as_user", "http://github.com/as181920/as_user", {target: "_blank"}%>
+		</footer>
 	</body>
 </html>
+
+

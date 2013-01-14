@@ -1,0 +1,15 @@
+<div class="user-info">
+	<% if current_user %>
+		<strong class="hd"><img class="user" src="/assets/sample/no-avatar.jpg" width="20" height="20" alt=""/><%=current_user%></strong>
+		<div class="user-menubox">
+			<ul class="us-mn-list">
+				<li><a href="#nogo">分享给好友</a></li>
+				<li><a href="#nogo">枯水豆腐</a></li>
+				<li><a href="#nogo">水豆腐水豆</a></li>
+				<li><a href="#nogo">士大夫</a></li>
+			</ul>
+		</div>
+	<%else%>
+		<strong class="hd"><%=link_to "Singin", signin_path%><span class="line">|</span><%=link_to "Singup", signup_path%></strong>
+	<%end%>
+</div>

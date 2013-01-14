@@ -1,0 +1,98 @@
+/*jojo reset*/
+body, div, dl, dt, dd, ul, ol, li, p, h1, h2, h3, h4, h5, h6, pre, code, form, button, input, textarea, img, blockquote, th, td {margin:0;padding:0;vertical-align:baseline;}
+body {height:100%;font:62.5% "Microsoft YaHei";background:#f7f7f7 url(/assets/bg.jpg) repeat;}
+/* Tables still need 'cellspacing="0"' in the markup. */
+table { border-collapse:collapse;border-spacing:0;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal;}
+ul, ol {list-style:none;}
+select, input{vertical-align:middle;}
+img {border:0 none;vertical-align:top;}
+button {cursor:pointer;}
+i,em{font-style:normal;}
+a{color:#333;text-decoration:none;}
+a:hover {text-decoration:underline;}
+a:focus {outline:none;}
+abbr, article, aside, bb, datagrid, datalist, details, dialog, eventsource, figure, figcaption, footer, header, mark, menu, meter, nav, output, progress, section, time, hgroup {display: block;height: auto;margin:0;padding:0;}
+
+/*global set*/
+.clearfix:after {content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix {display:inline-block;} /* Hides from IE-mac\*/
+.clearfix {display:block;} /* End hide from IE-mac*/
+
+/*===== header =====*/
+#header{position:fixed;left:0;top:0;width:100%;height:40px;padding:5px 0;border-bottom:1px solid #e4e4e4;background:#f7f7f7 url(/assets/bg.jpg) repeat;}
+#header:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.logo{position:relative;float:left;width:170px;height:40px;margin-left:3%;line-height:38px;background-color:#8b291c;}
+.logo strong,.drop-down-menu s,.main-nav .other em{background:url(/assets/sprice.png) no-repeat;}
+.logo strong{margin-left:26px;padding-left:36px;color:#fff;font-weight:normal;}
+.logo strong a{color:#fff;font-size:1.2em;}
+.logo strong a:hover{text-decoration:none;}
+.drop-down-menu{position:absolute;right:0px;top:0;}
+.drop-down-menu s{display:block;width:50px;height:40px;cursor:pointer;background-position:15px -29px;}
+.drop-down-menubox{display:none;position:absolute;right:0;top:40px;width:170px;}
+.dp-dw-mnlist{background-color:#c23d2b}
+.dp-dw-mnlist li{border-top:1px solid #cc5b4c;}
+.dp-dw-mnlist li a{display:block;height:30px;padding:0 10px;line-height:30px;color:#fff;font-size:14px;}
+.dp-dw-mnlist li a:hover{text-decoration:none;background-color:#cd5140;}
+.main-nav{float:left;margin:2px 0 0 3%;}
+.main-nav a{padding:0 20px;color:#000;font-weight:700;}
+.main-nav .addbtn{padding:2px 10px;font-size:1.6em;border-radius:3px;background-color:#e4e4e4;}
+.main-nav .delete{font-size:1.6em;}
+.main-nav .asked-by{font-size:1.6em;}
+.main-nav .addbtn i{margin-right:6px;font-size:1.4em;}
+.main-nav .other{display:inline-block;margin-top:7px;vertical-align:top;}
+.main-nav .other em{padding:0 31px 0 11px;cursor:pointer;font-size:1.6em;font-weight:700;background-position:52px -65px;}
+.main-nav .othercur em{padding:0 30px 0 10px;position:relative;border:1px solid #dcdcdc;border-bottom:none;background-color:#e7e7e7;background-position:51px -65px;}
+.other-menu{display:none;margin-top:-2px;border:1px solid #dcdcdc;background-color:#e7e7e7;}
+.ot-mn-list{padding-top:5px;}
+.ot-mn-list li a{display:block;height:28px;padding:0 10px;line-height:28px;font-size:1.2em;font-weight:normal;}
+.ot-mn-list li a:hover{text-decoration:none;background-color:#f1f1f1;}
+.main-nav a:hover{text-decoration:none;}
+.main-nav .line{margin:0 10px;color:#636363;font-size:1.6em;}
+.user-info{position:relative;float:right;margin:10px 3% 0 0;}
+.user-info .user{display:inline-block;width:20px;height:20px;margin-right:10px;}
+.user-info .hd{display:block;padding:5px;font-size:1.4em;cursor:pointer;}
+.user-info .hdcur{position:relative;padding:4px;border:1px solid #dcdcdc;border-bottom:0;background-color:#e7e7e7;}
+.user-menubox{display:none;margin-top:-1px;border:1px solid #dcdcdc;background-color:#e7e7e7;}
+.us-mn-list{padding-top:5px;}
+.us-mn-list li a{display:block;height:28px;padding:0 10px;line-height:28px;font-size:1.2em;font-weight:normal;}
+.us-mn-list li a:hover{text-decoration:none;background-color:#f1f1f1;}
+
+.message-box{margin:0 3%;padding-top:10px;color:#fff;clear:both;}
+.mes-tips-error{padding:8px 10px;border-radius:5px;background-color:#eb7767;}
+.mes-tips-success{padding:8px 10px;border-radius:5px;background-color:#7cb149;}
+.message-box strong{font-size:1.2em;}
+.message-box .close{float:right;color:#fff;padding:2px 5px;}
+.message-box .close:hover{text-decoration:none;background-color:#8b291c;}
+
+#container{height:auto!important;height:630px;min-height:630px;margin-top:50px;}
+#container:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.qa-wrapper{float:left;width:70%;margin:40px 4% 0 3%;}
+.qa-list li{margin-bottom:40px;font-size:1.2em;}
+.qa-list li:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.qa-list .avatar{float:left;width:38px;margin-right:1%;}
+.qa-list .info{float:left;width:95%;}
+.qa-list .name{margin-bottom:5px;color:#808080;}
+.qa-list .name a{margin-right:15px;text-decoration:underline;color:#808080;}
+.qa-list .time{display:inline;}
+.qa-list .con{margin-bottom:10px;line-height:1.6;color:#000;font-size:1.2em;}
+.qa-list .count span{margin-right:20px;color:#808080;}
+.qa-list .count a{color:#8b291c;}
+.pagination{padding:20px 0 40px;text-align:center;font-size:1.4em;}
+.pagination span a{margin-right:5px;padding:4px 10px;text-align:center;}
+.pagination .current{margin-right:5px;padding:4px 10px;border-radius:5px;background-color:#d8d8d8;}
+.pagination .gap{margin-right:10px;padding-left:5px;}
+.pagination span a:hover{text-decoration:none;border-radius:5px;background-color:#d8d8d8;}
+
+#sidebar{float:right;width:20%;margin:60px 3% 0 0;font-size:1.2em;}
+.ask-box .hd{margin-bottom:5px;}
+.ask-list li{height:22px;line-height:22px;overflow:hidden;}
+.ask-list li i{padding-right:5px;}
+.ask-list li a:hover{color:#8b291c;}
+.x-line{height:1px;margin:15px 0;background-color:#d8d8d8;}
+.hot-tag-box .hd{margin-bottom:5px;}
+.ht-tg-list li a{padding:2px 5px;color:#222;}
+.ht-tg-list li a:hover{text-decoration:none;border-radius:3px;background-color:#d8d8d8;}
+.ht-tg-list li span{margin-left:10px;font-size:1.8em;color:#999;}
+
+#footer{height:40px;padding-left:26px;line-height:40px;font-size:1.2em;border-top:1px solid #909090;}
