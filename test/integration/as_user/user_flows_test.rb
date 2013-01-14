@@ -24,8 +24,6 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     user_id = path.split("/")[3]
     assert_equal "/as_user/users/#{user_id}", path
     assert_equal "User was successfully created.", flash[:notice]
-    assert_select "a[href=?]","/as_user/users/#{user_id}/edit", {count: 1, text: "Edit"}
-    assert_select "a[href=?][data-method=?]","/as_user/signout", "delete", {count: 1, text: "Signout"}
 
     #edit
     get "/as_user/users/#{user_id}/edit"
@@ -39,9 +37,6 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     put_via_redirect "/as_user/users/#{user_id}", {id: user_id, user: { email: "email#{Time.now.to_f}@example.com", name: "name" }}
     assert_equal "/as_user/users/#{user_id}", path
     assert_equal 'User was successfully updated.', flash[:notice]
-    get path # need get here, do not need do this on web browser
-    assert_select "a[href=?]","/as_user/users/#{user_id}/edit", {count: 1, text: "Edit"}
-    assert_select "a[href=?][data-method=?]","/as_user/signout", "delete", {count: 1, text: "Signout"}
 
     get "/as_user/users/#{user_id}/edit_password"
     assert_select "form"
@@ -54,7 +49,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test "signin and redirected back and signout" do
-    @user = create_dummy_user
+    @user = FactoryGirl.create(:user)
 
     #signin
     get "/as_user/signin"
@@ -73,6 +68,8 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_equal "/as_user/signin", path
 
     post_via_redirect "/as_user/sessions", session: {email: @user.email, password: "dummy"}
+    assert_template "new"
+    post_via_redirect "/as_user/sessions", session: {email: @user.email, password: "password"}
     assert_equal origin_path, path
 
     get_via_redirect "/as_user/signin"
@@ -80,12 +77,12 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
 
     #signout
     delete_via_redirect "/as_user/signout"
-    assert_equal "/as_user/", path
+    assert_equal "/", path
   end
 
   test "view my info page" do
-    @user1 = create_dummy_user
-    @user2 = create_dummy_user
+    @user1 = FactoryGirl.create(:user)
+    @user2 = FactoryGirl.create(:user)
     user1_id = @user1.id
     user2_id = @user2.id
     
@@ -94,7 +91,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]","/as_user/users/#{user1_id}/edit", 0
     assert_select "a[href=?][data-method=?]","/as_user/signout", "delete", 0
 
-    post_via_redirect "/as_user/sessions", session: {email: @user2.email, password: "dummy"}
+    post_via_redirect "/as_user/sessions", session: {email: @user2.email, password: "password"}
     get_via_redirect "/as_user/users/#{user1_id}"
     assert_equal "/as_user/users/#{user1_id}", path
     assert_select "a[href=?]","/as_user/users/#{user1_id}/edit", 0
@@ -107,10 +104,4 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?][data-method=?]","/as_user/signout", "delete", {count: 1, text: "Signout"}
   end
 
-  private
-  def create_dummy_user
-    email = "dummy#{Time.now.to_f}@example.com"
-    user = User.create!(email: email, name: "dummy", password: "dummy",password_confirmation: "dummy")
-  end
 end
-      # test links

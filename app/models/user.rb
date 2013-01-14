@@ -8,6 +8,7 @@
 #  password_digest :string(60)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  nickname        :string(100)
 #
 
 class User < ActiveRecord::Base

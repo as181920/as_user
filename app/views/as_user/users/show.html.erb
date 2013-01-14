@@ -13,17 +13,6 @@
 </table>
 </div>
 
-<div class="nav_bar">
-  <div class="or_hr">Or</div>
-  <hr/>
-  <p>
-  <%= link_home %>
-  <%= link_to 'Edit', edit_user_path(@user) if current_user?(@user) %>
-  <%= link_to 'Change Password', edit_password_user_path(@user) if current_user?(@user) %>
-  <%= link_to 'Signout', signout_path,method: :delete if current_user?(@user) %>
-  <%= link_to 'Signup', signup_path %>
-  </p>
-</div>
 
 <% content_for :menu do %>
   <p>

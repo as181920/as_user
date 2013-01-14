@@ -9,6 +9,7 @@
 #  password_digest :string(60)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  nickname        :string(100)
 #
 
 require 'test_helper'
@@ -22,72 +23,94 @@ module AsUser
       User.destroy_all
     end
 
-    test "only save valid user" do
-      email = "dummy#{Time.now.to_f}@example.com"
-      user = User.new(email: email, name: "dummy", password: "dummy",password_confirmation: "dummy")
+    test "create new user" do
+      user = FactoryGirl.create(:user)
       assert user.save
+    end
 
-      # without name
-      user = User.new(email: "dummy#{Time.now.to_f}@example.com", password: "dummy",password_confirmation: "dummy")
-      assert !user.save
 
-      # name too long
-      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "abcdefghigabcdefghigabcdefghigabcdefghigabcdefghig", password: "dummy",password_confirmation: "dummy")
-      assert !user.save
-      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "abcdefghigabcdefghigabcdefghigabcdefghigabcdefghi", password: "dummy",password_confirmation: "dummy")
-      assert user.save
-
-      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十", password: "dummy",password_confirmation: "dummy")
-      assert !user.save
-      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九", password: "dummy",password_confirmation: "dummy")
-      assert user.save
-
-      # email invalid
+    test "user with invalid email format" do
       user = User.new(email: "dummy#{Time.now.to_f}@domain", name: "dummy", password: "dummy",password_confirmation: "dummy")
       assert !user.save
       user = User.new(email: "dummy", name: "dummy", password: "dummy",password_confirmation: "dummy")
       assert !user.save
-      user = User.new(name: "dummy", password: "dummy",password_confirmation: "dummy")
-      assert !user.save
-      user = User.new(email: email, name: "dummy", password: "dummy",password_confirmation: "dummy")
+    end
+
+    test "user with duplicated email" do
+      user = FactoryGirl.create(:user)
+      assert user.save
+      user = User.new(email: user.email, name: "dummy", password: "dummy",password_confirmation: "dummy")
       assert !user.save
       assert user.errors.messages[:email].include? "has already been taken"
+    end
 
-    # invalid password
+    test "user without email" do
+      user = User.new(name: "dummy", password: "dummy",password_confirmation: "dummy")
+      assert !user.save
+      assert user.errors.messages[:email].include? "can't be blank"
+    end
+
+    test "user without name" do
+      user = User.new(email: "dummy#{Time.now.to_f}@example.com", password: "dummy",password_confirmation: "dummy")
+      assert !user.save
+      assert user.errors.messages[:name].include? "can't be blank"
+    end
+
+    test "longest user name or too long" do
+      # en
+      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "abcdeefghigabcdefghigabcdefghigabcdefghigabcdefghi", password: "dummy",password_confirmation: "dummy")
+      assert user.save
+      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "abcddefghigabcdefghigabcdefghigabcdefghigabcdefghig", password: "dummy",password_confirmation: "dummy")
+      assert !user.save
+
+      # cn
+      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十", password: "dummy",password_confirmation: "dummy")
+      assert user.save
+      user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十零", password: "dummy",password_confirmation: "dummy")
+      assert !user.save
+    end
+
+    test "user with duplicated name" do
+      user = FactoryGirl.create(:user)
+      assert user.save
+      user = User.new(email: "x_#{Time.now.to_f}@x.com", name: user.name, password: "dummy",password_confirmation: "dummy")
+      assert !user.save
+      assert user.errors.messages[:name].include? "has already been taken"
+    end
+
+    test "user with invalid password" do
       user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "dummy", password: "du",password_confirmation: "dummy")
       assert !user.save
+      assert user.errors.messages[:password].include? "is too short (minimum is 3 characters)"
+
       user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "dummy", password_confirmation: "dummy")
       assert !user.save
+      assert user.errors.messages[:password].include? "can't be blank"
+
       user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "dummy", password: "dummy")
       assert !user.save
+      assert user.errors.messages[:password_confirmation].include? "can't be blank"
+
       user = User.new(email: "dummy#{Time.now.to_f}@example.com", name: "dummy", password: "dummy",password_confirmation: "dummz")
       assert !user.save
+      assert user.errors.messages[:password].include? "doesn't match confirmation"
     end
 
     test "authenticate user" do
-      create_dummy_user
-      email = "dummy@example.com"
-      user = User.find_by_email email
+      user = FactoryGirl.create(:user)
+      user = User.find_by_email user.email
       assert user.respond_to?(:authenticate)
 
-      # invalid pasword for authentication
-      assert user.authenticate "dummy"
-      assert ! user.authenticate("dummz")
+      assert user.authenticate "password"
+      assert !user.authenticate("wrong password")
     end
 
     test "delete one user" do
-      user = create_dummy_user
+      user = FactoryGirl.create(:user)
       assert user.destroy
       assert_equal 0,User.all.count
     end
 
-    private
-    def create_dummy_user
-      email = "dummy@example.com"
-      user = User.create!(email: email, name: "dummy", password: "dummy",password_confirmation: "dummy")
-    end
-
   end
 end
-
 

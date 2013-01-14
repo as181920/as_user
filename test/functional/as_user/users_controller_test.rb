@@ -91,22 +91,26 @@ module AsUser
       assert_equal 'User was successfully updated.', flash[:notice]
     end
   
-    test "should destroy user" do
+    test "can only destroy the singed_in user " do
       @user_for_destroy = FactoryGirl.create(:user)
       @user_for_stay = FactoryGirl.create(:user)
+      # can not destroy before login
       assert_no_difference('User.count') do
         delete :destroy, id: @user_for_destroy
       end
+
+      # login
       sign_in @user_for_destroy
+
+      # can not destroy other user
       assert_no_difference('User.count') do
         delete :destroy, id: @user_for_stay
       end
-      assert_redirected_to root_path
+
+      # can destroy myself
       assert_difference('User.count', -1) do
         delete :destroy, id: @user_for_destroy
       end
-  
-      assert_redirected_to users_path
     end
   end
 end
