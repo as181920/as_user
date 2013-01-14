@@ -20,7 +20,6 @@ module AsUser
     end
 
     def destroy
-      store_location
       sign_out
       flash[:notice] = "signed out."
       #redirect_back_or main_app.root_path

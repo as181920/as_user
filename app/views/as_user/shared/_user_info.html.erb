@@ -1,12 +1,15 @@
 <div class="user-info">
 	<% if current_user %>
-		<strong class="hd"><img class="user" src="/assets/sample/no-avatar.jpg" width="20" height="20" alt=""/><%=current_user%></strong>
+		<strong class="hd">
+			<!--<img class="user" src="/assets/sample/no-avatar.jpg" width="20" height="20" alt=""/>-->
+			<%= current_user%>
+		</strong>
 		<div class="user-menubox">
 			<ul class="us-mn-list">
 				<li><a href="#nogo">分享给好友</a></li>
-				<li><a href="#nogo">枯水豆腐</a></li>
 				<li><a href="#nogo">水豆腐水豆</a></li>
 				<li><a href="#nogo">士大夫</a></li>
+				<li><%=link_to "Signout", signout_path, method: :delete%></li>
 			</ul>
 		</div>
 	<%else%>
