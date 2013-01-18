@@ -4,9 +4,6 @@
 .intro_content {position:relative;top:238px;font-size:12px;text-decoration:none;border-radius:2px;}
 .intro_content a{text-decoration:none;border:#ddd 2px solid;font-size:10px;font-weight:normal;font-style:italic;border-radius:6px;}
 
-.form-box { margin-right:auto;margin-left:auto;text-align: right; }
-.form-table td{ padding-bottom: 8px;padding-right: 8px;}
-
 .main-nav a{font-size:1.6em;}
 
 .user-info .line{margin:0 10px;color:#636363;font-size:1.6em;}
